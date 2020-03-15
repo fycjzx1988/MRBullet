@@ -122,7 +122,7 @@ CGFloat static kBulletLabelPadding = 10;
 
 - (UIImageView *)lbCommentIcon {
     if(!_lbCommentIcon) {
-        _lbCommentIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet_default.jpg"]];
+        _lbCommentIcon = [[UIImageView alloc] init];
         _lbCommentIcon.layer.masksToBounds = YES;
         [self addSubview:_lbCommentIcon];
     }
