@@ -164,6 +164,7 @@ static MRBulletManager *_instance;
     if(self.bulletComments.count == 0) return nil;
     NSString *comment = [self.bulletComments firstObject];
     if(comment) {
+        [self.bulletComments insertObject:comment atIndex:self.bulletComments.count -1];
         [self.bulletComments removeObjectAtIndex:0];
     }
     return comment;
@@ -181,6 +182,26 @@ static MRBulletManager *_instance;
         _bulletViews = [NSMutableArray array];
     }
     return _bulletViews;
+}
+
+- (NSMutableArray *)dataSources {
+    if(!_dataSources) {
+        _dataSources = [NSMutableArray arrayWithArray:@[
+                                                        @"弹幕1~~~~~~~~",
+                                                        @"弹幕2~~~~",
+                                                        @"弹幕3~~~~~~~~~~~~~~~~",
+                                                        @"弹幕4~~~~~~~~",
+                                                        @"弹幕5~~~~",
+                                                        @"弹幕6~~~~~~~~~~~~~~~~",
+                                                        @"弹幕7~~~~~~~~",
+                                                        @"弹幕8~~~~",
+                                                        @"弹幕9~~~~~~~~~~~~~~~~",
+                                                        @"弹幕10~~~~~~~~",
+                                                        @"弹幕11~~~~",
+                                                        @"弹幕12~~~~~~~~~~~~~~~~"
+                                                        ]];
+    }
+    return _dataSources;
 }
 
 @end

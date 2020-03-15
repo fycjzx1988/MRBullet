@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "MRBullet.h"
+#import "MRBulletManager.h"
+#import "MRBulletView.h"
 
 @interface ViewController ()
 
@@ -20,7 +21,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     __weak typeof (self) weakSelf = self;
-    [MRBullet manager].generateViewBlock = ^(MRBulletView *bulletView) {
+    [MRBulletManager sharedInstance].generateViewBlock = ^(MRBulletView *bulletView) {
         [weakSelf addBulletView:bulletView];
     };
     
@@ -41,36 +42,16 @@
 
 - (void)clickStartBtn
 {
-    [[MRBullet manager] mr_startBulletsAction];
+    [[MRBulletManager sharedInstance] mr_startBulletsAction];
 }
 
-- (NSMutableArray *)dataSources {
-    if(!_dataSources) {
-        _dataSources = [NSMutableArray arrayWithArray:@[
-                                                        @"弹幕1~~~~~~~~",
-                                                        @"弹幕2~~~~",
-                                                        @"弹幕3~~~~~~~~~~~~~~~~",
-                                                        @"弹幕4~~~~~~~~",
-                                                        @"弹幕5~~~~",
-                                                        @"弹幕6~~~~~~~~~~~~~~~~",
-                                                        @"弹幕7~~~~~~~~",
-                                                        @"弹幕8~~~~",
-                                                        @"弹幕9~~~~~~~~~~~~~~~~",
-                                                        @"弹幕10~~~~~~~~",
-                                                        @"弹幕11~~~~",
-                                                        @"弹幕12~~~~~~~~~~~~~~~~"
-                                                        ]];
-    }
-    return _dataSources;
-}
 
 - (void)clickStopBtn
 {
-    [[MRBullet manager] mr_stopAction];
+    [[MRBulletManager sharedInstance] mr_stopAction];
 }
 
-- (void)addBulletView:(MRBulletView *)bulltView
-{
+- (void)addBulletView:(MRBulletView *)bulltView{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     bulltView.frame = CGRectMake(width,  300 + bulltView.trajectory * (bulltView.bounds.size.height + 10), bulltView.bounds.size.width, bulltView.bounds.size.height);
     [self.view addSubview:bulltView];

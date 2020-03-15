@@ -29,10 +29,7 @@ CGFloat static kBulletLabelPadding = 10;
 {
     if(self = [super init]) {
         // 随机颜色
-        int randomRed = arc4random() % 256;
-        int randomGreen = arc4random() % 256;
-        int randomBlue = arc4random() % 256;
-        self.backgroundColor = [UIColor colorWithRed:randomRed/255.0 green:randomGreen/255.0 blue:randomBlue/255.0 alpha:1.0];
+        self.backgroundColor = [UIColor redColor];
         
         // 计算弹幕文字实际宽度
         NSDictionary *attr = @{
@@ -61,7 +58,6 @@ CGFloat static kBulletLabelPadding = 10;
 - (void)mr_startAnimation {
     // 根据弹幕长度执行动画效果
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat duration = 2.5f;
     CGFloat wholeWidth = screenWidth + CGRectGetWidth(self.bounds) + 50;
     
     // 弹幕开始
@@ -70,10 +66,10 @@ CGFloat static kBulletLabelPadding = 10;
     }
     
     // 根据 v = s/t, 时间固定, 计算速度, 弹幕越长速度越快
-    CGFloat speed = wholeWidth/duration;
+    CGFloat speed = 92;
     
     // 计算完全进入屏幕的时间
-    CGFloat enterDuration = (CGRectGetWidth(self.bounds) + 50)/speed;
+    CGFloat enterDuration = (CGRectGetWidth(self.bounds) + 10)/speed;
     
     // 计算完全退出屏幕的时间
     CGFloat exitDuration = wholeWidth/speed;
