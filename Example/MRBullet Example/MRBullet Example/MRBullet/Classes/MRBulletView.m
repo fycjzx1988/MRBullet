@@ -27,8 +27,7 @@ CGFloat static kBulletLabelPadding = 10;
  */
 - (instancetype)initWithComment:(NSString *)comment
 {
-    if(self = [super init])
-    {
+    if(self = [super init]) {
         // 随机颜色
         int randomRed = arc4random() % 256;
         int randomGreen = arc4random() % 256;
@@ -59,16 +58,14 @@ CGFloat static kBulletLabelPadding = 10;
 /**
  开始动画
  */
-- (void)mr_startAnimation
-{
+- (void)mr_startAnimation {
     // 根据弹幕长度执行动画效果
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat duration = 2.5f;
     CGFloat wholeWidth = screenWidth + CGRectGetWidth(self.bounds) + 50;
     
     // 弹幕开始
-    if(self.moveStatusBlock)
-    {
+    if(self.moveStatusBlock) {
         self.moveStatusBlock(Start);
     }
     
@@ -90,10 +87,8 @@ CGFloat static kBulletLabelPadding = 10;
         self.frame = frame;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
-        
         // 调用回调告诉外部状态，方便做下一步处理
-        if(self.moveStatusBlock)
-        {
+        if(self.moveStatusBlock){
             self.moveStatusBlock(Exit);
         }
     }];
@@ -102,8 +97,7 @@ CGFloat static kBulletLabelPadding = 10;
 /**
  结束动画
  */
-- (void)mr_stopAnimation
-{
+- (void)mr_stopAnimation {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.layer removeAllAnimations];
     [self removeFromSuperview];
@@ -112,20 +106,15 @@ CGFloat static kBulletLabelPadding = 10;
 /**
  弹幕完全进入屏幕
  */
-- (void)bulletEnterScrren
-{
-    if(self.moveStatusBlock)
-    {
+- (void)bulletEnterScrren {
+    if(self.moveStatusBlock) {
         self.moveStatusBlock(Enter);
     }
 }
 
 #pragma lazy-load
-
-- (UILabel *)lbCommentLabel
-{
-    if(!_lbCommentLabel)
-    {
+- (UILabel *)lbCommentLabel {
+    if(!_lbCommentLabel) {
         _lbCommentLabel = [[    UILabel alloc] initWithFrame:CGRectZero];
         _lbCommentLabel.font = [UIFont systemFontOfSize:17.f];
         _lbCommentLabel.textColor = [UIColor whiteColor];
@@ -135,10 +124,8 @@ CGFloat static kBulletLabelPadding = 10;
     return _lbCommentLabel;
 }
 
-- (UIImageView *)lbCommentIcon
-{
-    if(!_lbCommentIcon)
-    {
+- (UIImageView *)lbCommentIcon {
+    if(!_lbCommentIcon) {
         _lbCommentIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet_default.jpg"]];
         _lbCommentIcon.layer.masksToBounds = YES;
         [self addSubview:_lbCommentIcon];

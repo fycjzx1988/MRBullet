@@ -13,8 +13,7 @@
 /**
  弹幕管理器
  */
-+ (MRBulletManager *)manager
-{
++ (MRBulletManager *)manager {
     return [MRBulletManager sharedInstance];
 }
 

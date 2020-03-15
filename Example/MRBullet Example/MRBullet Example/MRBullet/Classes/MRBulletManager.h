@@ -15,6 +15,8 @@
 // 弹幕 bulletView 创建完成之后的回调，便于添加到指定的 superView 中
 @property(nonatomic, copy) void (^generateViewBlock)(MRBulletView *bulletView);
 
+// 弹幕数据源
+@property(nonatomic, strong) NSMutableArray *dataSources;
 /**
  单例方法
  */
@@ -29,5 +31,6 @@
  停止弹幕运动
  */
 - (void)mr_stopAction;
+
 
 @end
